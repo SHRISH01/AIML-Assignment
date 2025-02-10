@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YOLO Object Detection</title>
+</head>
+<body>
+    <h2>Upload an Image for Object Detection</h2>
+    
+    <form action="/" method="POST" enctype="multipart/form-data">
+        <input type="file" name="file" required>
+        <button type="submit">Upload & Detect</button>
+    </form>
+
+    {% if uploaded_image %}
+        <h3>Uploaded Image:</h3>
+        <img src="{{ uploaded_image }}" alt="Uploaded Image" style="width: 400px;">
+        
+        <h3>Detection Results:</h3>
+        <ul>
+            {% for detection in detections %}
+                <li>Class: {{ detection["class"] }}, Confidence: {{ detection["confidence"] }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+</body>
+</html>
